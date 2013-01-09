@@ -1,28 +1,110 @@
-#!/bin/bash
+#!/bin/sh
+
+usage()
+{
+cat << EOF
+usage: vhostcreator.sh options
+
+This script creating virtual host on this computer. MUST BE STARTED ON ROOT!
+
+OPTIONS:
+   -h      Show this message
+   -t      Virtual host name (for example, test.com or example.local), REQUIRED
+   -u      Your username, REQUIRED
+   -g      Your groupname, default equal with username
+   -p      Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
+EOF
+}
+
+# default params
+
+TITLE=
+USER=
+USERGROUP=
+VHOST_PATH="/var/www/"
+
+# get params
+
+while getopts "ht:u:p:g:" OPTION
+do
+     case $OPTION in
+         h)
+             usage
+             exit 1
+             ;;
+         t)
+             TITLE=$OPTARG
+             ;;
+         u)
+             USER=$OPTARG
+             ;;
+         p)
+             VHOST_PATH=$OPTARG
+             ;;
+         g)
+             USERGROUP=$OPTARG
+             ;;
+         ?)
+             usage
+             exit
+             ;;
+     esac
+done
+
+# required params
+
+if [ "$(whoami)" != "root" ]; then
+	echo "Sorry, you are not root."
+	exit 1
+fi
+
+if [ "$TITLE" = '' ] || [ "$USER" = '' ] || [ "(whoami)" != 'root' ]
+then
+    usage
+    exit
+fi
+
+# fixed params
+
+if [ "$USERGROUP" = '' ]
+then
+    USERGROUP=$USER
+fi
+if [ "$VHOST_PATH" = '/var/www/' ]
+then
+    VHOST_PATH=$VHOST_PATH$TITLE
+fi
+
 echo "Creating Virtual Host"
 cd /etc/apache2/sites-available
-cat <<EOF >> "$1.conf"
+cat <<EOF >> "$TITLE.conf"
 <VirtualHost *:80>
-  ServerName $1
-  ServerAlias www.$1
-  DocumentRoot "/var/www/$1"
-  <Directory "/var/www/$1">
+  ServerName $TITLE
+  ServerAlias www.$TITLE
+  DocumentRoot "$VHOST_PATH"
+  <Directory "$VHOST_PATH">
     allow from all
     Options +Indexes
   </Directory>
 </VirtualHost>
 EOF
-mkdir "/var/www/$1"
+mkdir "$VHOST_PATH"
 cd /etc/apache2/sites-enabled
-ln -s "/etc/apache2/sites-available/$1.conf" "$1.conf"
+ln -s "/etc/apache2/sites-available/$TITLE.conf" "$TITLE.conf"
 echo "Editing /etc/hosts"
 cat <<EOF >> "/etc/hosts"
-127.0.0.1       $1
+127.0.0.1       $TITLE
 EOF
 echo "Set permissions"
-chown -R "$2:$2" "/var/www/$1"
+chown -R "$USER:$USERGROUP" "$VHOST_PATH"
 echo "Restarting Apache2"
 /etc/init.d/apache2 restart
 echo "Finished!"
-echo "Local address: /var/www/$1"
-echo "Web address: http://$1"
+echo "Local address: $VHOST_PATH"
+echo "Web address: http://$TITLE"
+
+exit 1
+
+
+
+

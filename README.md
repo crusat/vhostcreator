@@ -1,23 +1,28 @@
 vhostcreator
 ============
 
-Automatically virtual host creator for apache2.
+Automatically virtual host creator for apache2. MUST BE STARTED ON ROOT!
 
 First Run:
 
     $ chmod a+x vhostcreator.sh
 
-Using:
+Usage:
 
-    $ sudo vhostcreator.sh your_host your_login
+    $ sudo vhostcreator.sh -t <virtual_host_name> -u <username> -g <usergroup> -p <path_to_virtual_host>
 
-Where:
+OPTIONS:
 
-    your_host - test.local or example.com or anybody else.
-    your_login - your current login in OS
+    -h      Show help
+    -t      Virtual host name (for example, test.com or example.local), REQUIRED
+    -u      Your username, REQUIRED
+    -g      Your groupname, default equal with username
+    -p      Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
 
-Example:
+Examples:
 
-    $ sudo vhostcreator.sh mysite.com crusat
+    $ sudo vhostcreator.sh -t mysite.com -u crusat
+
+    $ sudo vhostcreator.sh -t mysite.com -u crusat -g users -p /home/crusat/my_sites/mysite.com
 
 Tested on Xubuntu 12.10, Apache2.
