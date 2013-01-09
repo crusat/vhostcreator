@@ -58,7 +58,7 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 
-if [ "$TITLE" = '' ] || [ "$USER" = '' ] || [ "(whoami)" != 'root' ]
+if [ "$TITLE" = '' ] || [ "$USER" = '' ]
 then
     usage
     exit
