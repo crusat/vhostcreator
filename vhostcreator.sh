@@ -128,7 +128,12 @@ cat <<EOF >> "$TITLE.conf"
   </Directory>
 </VirtualHost>
 EOF
+
 mkdir "$VHOST_PATH"
+cat <<EOF >> "$VHOST_PATH/index.html"
+Its work! Virtual host $TITLE created.
+EOF
+
 cd /etc/apache2/sites-enabled
 ln -s "/etc/apache2/sites-available/$TITLE.conf" "$TITLE.conf"
 echo "Editing /etc/hosts"
