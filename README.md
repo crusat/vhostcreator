@@ -26,3 +26,6 @@ Examples:
     $ sudo ./vhostcreator.sh -t mysite.com -u crusat -g users -p /home/crusat/my_sites/mysite.com
 
 Tested on Xubuntu 12.04, 12.10; Apache2.
+
+
+Thanks to my brother Sergey and friend Evgeny for help.
