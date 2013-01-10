@@ -88,7 +88,7 @@ then
     VHOST_PATH=$VHOST_PATH$TITLE
 fi
 
-if [ "$TITLE" != '' ] && [ "$REMOVE" = 1 ]
+if [ "x$TITLE" != 'x' ] && [ "$REMOVE" = 1 ]
 then
     echo "Removing Virtual Host"
     rm -f "/etc/apache2/sites-available/$TITLE.conf"
@@ -102,7 +102,7 @@ then
     exit
 fi
 
-if [ "$TITLE" = '' ] || [ "$USER" = '' ]
+if [ "x$TITLE" = 'x' ] || [ "x$USER" = 'x' ]
 then
     usage
     exit 1
@@ -110,7 +110,7 @@ fi
 
 # fixed params
 
-if [ "$USERGROUP" = '' ]
+if [ "x$USERGROUP" = 'x' ]
 then
     USERGROUP=$USER
 fi
