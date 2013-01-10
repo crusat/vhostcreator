@@ -14,9 +14,9 @@ OPTIONS:
    -g       Your groupname, default equal with username
    -p       Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
    -l       Just list virtual hosts (no need parameters)
+   -r       Just remove this virtual host (need only -t parameter)
 TODO:
    -f       Framework ("yii" or "")
-   -r       Just remove this virtual host (need only -t parameter)
 EOF
 }
 
@@ -94,10 +94,10 @@ then
     rm -f "/etc/apache2/sites-available/$TITLE.conf"
     rm -f "/etc/apache2/sites-enabled/$TITLE.conf"
     echo "Editing /etc/hosts"
-    #sed -i "/127.0.0.1       $TITLE/d" "/etc/hosts"
+    sed -r -i "/^127.0.0.1(\s+)$TITLE$/d" /etc/hosts
     echo "Restarting Apache2"
     /etc/init.d/apache2 restart
-    echo "Removing www directory"
+    echo "Removing www directory: $VHOST_PATH"
     rm -rf "$VHOST_PATH"
     exit
 fi
