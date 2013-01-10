@@ -3,9 +3,9 @@
 usage()
 {
 cat << EOF
-usage: vhostcreator.sh options
+usage: ./vhostcreator.sh options
 
-This script creating virtual host on this computer. MUST BE STARTED ON ROOT!
+This script creating virtual host on this computer. MUST BE STARTED AS ROOT!
 
 OPTIONS:
    -h      Show this message

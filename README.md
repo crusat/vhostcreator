@@ -1,15 +1,15 @@
 vhostcreator
 ============
 
-Automatically virtual host creator for apache2. MUST BE STARTED ON ROOT!
+Automatic virtual host creator for apache2. MUST BE STARTED AS ROOT!
 
 First Run:
 
-    $ chmod a+x vhostcreator.sh
+    $ chmod a+x ./vhostcreator.sh
 
 Usage:
 
-    $ sudo vhostcreator.sh -t <virtual_host_name> -u <username> -g <usergroup> -p <path_to_virtual_host>
+    $ sudo ./vhostcreator.sh -t <virtual_host_name> -u <username> -g <usergroup> -p <path_to_virtual_host>
 
 OPTIONS:
 
@@ -21,8 +21,8 @@ OPTIONS:
 
 Examples:
 
-    $ sudo vhostcreator.sh -t mysite.com -u crusat
+    $ sudo ./vhostcreator.sh -t mysite.com -u crusat
 
-    $ sudo vhostcreator.sh -t mysite.com -u crusat -g users -p /home/crusat/my_sites/mysite.com
+    $ sudo ./vhostcreator.sh -t mysite.com -u crusat -g users -p /home/crusat/my_sites/mysite.com
 
-Tested on Xubuntu 12.10, Apache2.
+Tested on Xubuntu 12.04, 12.10; Apache2.
