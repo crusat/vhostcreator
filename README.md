@@ -12,13 +12,14 @@ Usage:
     $ sudo ./vhostcreator.sh -t <virtual_host_name> -u <username> -g <usergroup> -p <path_to_virtual_host>
 
 OPTIONS:
-   -h       Show this message
-   -t       Virtual host name (for example, test.com or example.local), REQUIRED
-   -u       Your username, REQUIRED
-   -g       Your groupname, default equal with username
-   -p       Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
-   -l       Just list virtual hosts (no need parameters)
-   -r       Just remove this virtual host (need only -t parameter). USE CAREFUL!
+
+    -h       Show this message
+    -t       Virtual host name (for example, test.com or example.local), REQUIRED
+    -u       Your username, REQUIRED
+    -g       Your groupname, default equal with username
+    -p       Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
+    -l       Just list virtual hosts (no need parameters)
+    -r       Just remove this virtual host (need only -t parameter). USE CAREFUL!
 
 Examples:
 

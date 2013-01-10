@@ -3,20 +3,25 @@
 usage()
 {
 cat << EOF
-usage: ./vhostcreator.sh options
+Usage:
+
+    ./vhostcreator.sh options
 
 This script creating virtual host on this computer. MUST BE STARTED AS ROOT!
 
 OPTIONS:
-   -h       Show this message
-   -t       Virtual host name (for example, test.com or example.local), REQUIRED
-   -u       Your username, REQUIRED
-   -g       Your groupname, default equal with username
-   -p       Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
-   -l       Just list virtual hosts (no need parameters)
-   -r       Just remove this virtual host (need only -t parameter)
+
+    -h       Show this message
+    -t       Virtual host name (for example, test.com or example.local), REQUIRED
+    -u       Your username, REQUIRED
+    -g       Your groupname, default equal with username
+    -p       Absolute path for creating virtual host, default is "/var/www/<virtual_host_name>"
+    -l       Just list virtual hosts (no need parameters)
+    -r       Just remove this virtual host (need only -t parameter)
+
 TODO:
-   -f       Framework ("yii" or "")
+
+    -f       Framework ("yii" or "")
 EOF
 }
 
